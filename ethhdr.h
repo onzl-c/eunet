@@ -2,7 +2,7 @@
 
 #include "eunet.h"
 
-struct ethhdr {
+struct EthHdr {
     uint8_t dmac[6];
     uint8_t smac[6];
     uint16_t type;

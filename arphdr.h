@@ -2,7 +2,7 @@
 
 #include "eunet.h"
 
-struct arphdr {
+struct ArpHdr {
     uint16_t hrd;
     uint16_t pro;
     uint8_t hlen;

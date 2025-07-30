@@ -2,7 +2,7 @@
 
 #include "ip4hdr.h"
 
-struct udphdr {
+struct UdpHdr {
     uint16_t sport;
     uint16_t dport;
     uint16_t len;

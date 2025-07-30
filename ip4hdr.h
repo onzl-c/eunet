@@ -2,7 +2,7 @@
 
 #include "eunet.h"
 
-struct ip4hdr {
+struct Ip4Hdr {
     uint8_t hlen:4, v:4;
     uint8_t tos;
     uint16_t tlen;

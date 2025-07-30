@@ -2,7 +2,7 @@
 
 #include "ip4hdr.h"
 
-struct tcphdr {
+struct TcpHdr {
     uint16_t sport;
     uint16_t dport;
     uint32_t seq;
