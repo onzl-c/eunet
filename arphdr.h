@@ -3,15 +3,15 @@
 #include "eunet.h"
 
 struct ArpHdr {
-    uint16_t hrd;
-    uint16_t pro;
-    uint8_t hlen;
-    uint8_t plen;
-    uint16_t op;
-    uint8_t smac[6];    
-    uint32_t sip;
-    uint8_t dmac[6];
-    uint32_t dip;
+    uint16_t hrd_;
+    uint16_t pro_;
+    uint8_t hlen_;
+    uint8_t plen_;
+    uint16_t op_;
+    uint8_t smac_[6];    
+    uint32_t sip_;
+    uint8_t dmac_[6];
+    uint32_t dip_;
 
     // network link protocol
     enum: uint16_t {

@@ -3,16 +3,16 @@
 #include "eunet.h"
 
 struct Ip4Hdr {
-    uint8_t hlen:4, v:4;
-    uint8_t tos;
-    uint16_t tlen;
-    uint16_t id;
-    uint16_t frag;
-    uint8_t ttl;
-    uint8_t p;
-    uint16_t csum;
-    uint32_t sip;
-    uint32_t dip;
+    uint8_t hlen_:4, v_:4;
+    uint8_t tos_;
+    uint16_t tlen_;
+    uint16_t id_;
+    uint16_t frag_;
+    uint8_t ttl_;
+    uint8_t p_;
+    uint16_t csum_;
+    uint32_t sip_;
+    uint32_t dip_;
 
     // ip protocol types
     enum: uint8_t {
