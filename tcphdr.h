@@ -2,6 +2,7 @@
 
 #include "ip4hdr.h"
 
+#pragma pack(push, 1)
 struct TcpHdr {
     uint16_t sport_;
     uint16_t dport_;
@@ -20,3 +21,4 @@ struct TcpHdr {
         ACK = 0x10,
     };
 };
+#pragma pack(pop)

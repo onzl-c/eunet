@@ -2,6 +2,7 @@
 
 #include "eunet.h"
 
+#pragma pack(push, 1)
 struct Ip4Hdr {
     uint8_t hlen_:4, v_:4;
     uint8_t tos_;
@@ -21,3 +22,4 @@ struct Ip4Hdr {
         ICMP = 0x01
     };
 };
+#pragma pack(pop)
