@@ -1,18 +1,25 @@
 #include "ip.h"
+#include <cstdlib> // for atoi
 
-uint32_t setIp(const string& ip_str) {
-    struct in_addr addr;
-    if (inet_aton(ip_str.c_str(), &addr) == 0) {
-        fprintf(stderr, "Invalid IP address: %s\n", ip_str.c_str());
-        return 0;
+Ip::Ip(const string& r) {
+    uint8_t* p = (uint8_t*)&ip_;
+    int res = sscanf(r.c_str(), "%hhu.%hhu.%hhu.%hhu", &p[0], &p[1], &p[2], &p[3]);
+    if (res != SIZE) {
+        std::cerr << "sscanf failed, return " << res << std::endl;
+        ip_ = 0;
+        return;
     }
-    return addr.s_addr;
+    ip_ = ntohl(ip_);
 }
 
-void printIp(uint32_t ip) {
-    struct in_addr ip_addr;
-    ip_addr.s_addr = ip; 
-    printf("%s", inet_ntoa(ip_addr));
+Ip::operator std::string() const {
+    char s[INET_ADDRSTRLEN];
+    sprintf(s, "%d.%d.%d.%d",
+        (ip_ & 0xFF000000) >> 24,
+        (ip_ & 0x00FF0000) >> 16,
+        (ip_ & 0x0000FF00) >> 8,
+        (ip_ & 0x000000FF) >> 0);
+    return std::string(s);
 }
 
 // 외부에서 가져온 코드
