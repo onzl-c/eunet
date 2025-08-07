@@ -1,20 +1,44 @@
 #include "mac.h"
 
-uint8_t* setMac(const string& mac) {
-    static uint8_t mac_addr[6];
-    sscanf(mac.c_str(), "%hhx:%hhx:%hhx:%hhx:%hhx:%hhx",
-           &mac_addr[0], &mac_addr[1], &mac_addr[2],
-           &mac_addr[3], &mac_addr[4], &mac_addr[5]);
-    return mac_addr;
+Mac::Mac(const std::string& r) {
+    std::string s;
+    for (char ch : r) {
+        if ((ch >= '0' && ch <= '9') || (ch >= 'A' && ch <= 'F'|| (ch >= 'a' && ch <= 'f')))
+            s += ch;
+    }
+    int res = sscanf(s.c_str(), "%02hhx%02hhx%02hhx%02hhx%02hhx%02hhx",
+                    &mac_[0], &mac_[1], &mac_[2], &mac_[3], &mac_[4], &mac_[5]);
+    if (res != SIZE) {
+        std::cerr << "sscanf failed, return " << res << std::endl;
+        memset(mac_, 0, SIZE);
+    }
 }
 
-void printMac(const uint8_t* mac) {
-    for (int i = 0; i < 6; i++) {
-        printf("%02x", mac[i]);
-        if (i < 5) {
-            printf(":");
-        }
+Mac::operator std::string() const {
+    char s[20];
+    sprintf(s, "%02X:%02X:%02X:%02X:%02X:%02X", 
+            mac_[0], mac_[1], mac_[2], mac_[3], mac_[4], mac_[5]);
+    return std::string(s);
+}
+
+Mac::operator uint64_t() const {
+    uint64_t res = 0;
+    for (int i = 0; i < SIZE; i++) {
+        res = (res << 8) | mac_[i];
     }
+    return res;
+}
+
+Mac& Mac::nullMac() {
+    static uint8_t _value[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+    static Mac res(_value);
+    return res;
+}
+
+Mac& Mac::broadcastMac() {
+    static uint8_t _value[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+    static Mac res(_value);
+    return res;
 }
 
 // 외부에서 가져온 코드
