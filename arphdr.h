@@ -9,10 +9,20 @@ struct ArpHdr {
     uint8_t hlen_;
     uint8_t plen_;
     uint16_t op_;
-    uint8_t smac_[6];    
-    uint32_t sip_;
-    uint8_t dmac_[6];
-    uint32_t dip_;
+    Mac smac_;   
+    Ip sip_;
+    Mac tmac_;
+    Ip tip_;
+
+    uint16_t hrd() { return ntohs(hrd_); }
+    uint16_t pro() { return ntohs(pro_); }
+    uint8_t hlen() { return hlen_; }
+    uint8_t plen() { return plen_; }
+    uint16_t op() { return ntohs(op_); }
+    Mac smac() { return smac_; }
+    Ip sip() { return ntohl(sip_); }
+    Mac tmac() { return tmac_; }
+    Ip tip() { return ntohl(tip_); }
 
     // network link protocol
     enum: uint16_t {
