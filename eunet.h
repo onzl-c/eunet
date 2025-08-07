@@ -15,4 +15,8 @@
 #include <net/if.h>
 #include <unistd.h>
 
+#include "ip.h"
+#include "mac.h"
+#include "buf.h"
+
 using namespace std;

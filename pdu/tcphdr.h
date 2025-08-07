@@ -25,6 +25,6 @@ struct TcpHdr {
     uint16_t csum() { return ntohs(csum_); }
     uint16_t urp() { return ntohs(urp_); }
 
-    static Buf parseData(IpHdr* ipHdr, IcpHdr* tcpHer);
+    static Buf parseData(Ip4Hdr* ipHdr, TcpHdr* tcpHdr);
 };
 #pragma pack(pop)
