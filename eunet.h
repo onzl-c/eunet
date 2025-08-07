@@ -1,12 +1,10 @@
 #pragma once
 
+#include <vector>
 #include <iostream>
 #include <cstdint>
-#include <stdbool.h>
-#include <stdio.h>
 #include <pcap.h>
 #include <netinet/in.h>
-#include <cstdint>
 #include <string>
 #include <cstring>
 #include <cstdio>
