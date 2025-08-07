@@ -4,9 +4,13 @@
 
 #pragma pack(push, 1)
 struct EthHdr {
-    uint8_t dmac_[6];
-    uint8_t smac_[6];
+    Mac dmac_;
+    Mac smac_;
     uint16_t type_;
+
+    Mac dmac() { return dmac_; }
+    Mac smac() { return smac_; }
+    uint16_t type() { return ntohs(type_); }
 
     // ethernet types
     enum: uint16_t {
